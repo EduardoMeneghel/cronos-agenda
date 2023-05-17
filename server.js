@@ -16,10 +16,10 @@ app.get('/events', (request, response) => {
 
 app.post('/login', (request, response) => {
 
-  const {email, senha: password } = request.body;
+  const {loginEmail, loginPassword } = request.body;
 
-  connection.query(`SELECT * FROM users WHERE email = '${email}'`, (err, rows, fields) => {
-    if (! rows || password != rows[0].password) {
+  connection.query(`SELECT * FROM users WHERE email = '${loginEmail}'`, (err, rows, fields) => {
+    if (! rows || loginPassword != rows[0].password) {
       return response.status(400).send('Conta ou senha inválida');
     }
 

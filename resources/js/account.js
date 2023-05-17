@@ -1,5 +1,33 @@
 function login() {
+  const loginEmail = document.getElementById('loginEmail').value;
+  const loginPassword = document.getElementById('loginPassword').value;
 
+  if (! loginEmail || ! loginPassword) {
+    alert('Dados inválidos');
+    return;
+  }
+
+  fetch('http://localhost:3000/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        'loginEmail': loginEmail,
+        'loginPassword': loginPassword
+    })
+  })
+  .then(response => {
+    if (response.ok) {
+      alert('Login concluído com sucesso');
+    } else {
+      alert('Ocorreu um erro no Login');
+    }
+  })
+  .catch(error => {
+    alert('Ocorreu um erro de rede');
+    console.error(error);
+  });
 }
 
 function register() {
