@@ -8,9 +8,10 @@ app.use(cors());
 
 const connection = database.createConnection();
 
-app.get('/events', (request, response) => {
-  connection.query('SELECT * FROM events', (err, rows, fields) => {
-    response.send(rows);
+app.post('/events', (request, response) => {
+  const {start_datetime, end_datetime } = request.body;
+  connection.query(`SELECT * FROM events WHERE start_datetime >= '${start_datetime}' AND start_datetime <= '${end_datetime}';`, (err, rows, fields) => {
+    response.status(200).send(rows);
   });
 });
 
