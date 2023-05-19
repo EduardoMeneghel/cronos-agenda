@@ -1,0 +1,13 @@
+.calendar-header {
+    margin-bottom: 20px;
+}
+#calendar td {
+    height: 100px;
+    min-width: 100px;
+    border: 1px solid black;
+    text-align: center;
+}
+#calendar tr button {
+    margin: 0 auto;
+    display: block;
+}

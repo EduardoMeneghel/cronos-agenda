@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="../css/calendar.css" rel="stylesheet">
     </head>
     <body class="bg-gray-100">
-        <div class="container mx-auto p-4">
+        <section class="container mx-auto p-4">
             <div class="calendar-header flex justify-between items-center mb-4">
                 <button id="prevMonth" class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">Mês Anterior</button>
                 <h2 id="calendarTitle" class="text-lg font-bold"></h2>
@@ -14,23 +15,56 @@
             </div>
             <table id="calendar" class="table-fixed w-full">
             </table>
-        </div>
+        </section>
+        <section id="addEvent" class="fixed inset-0 flex items-center justify-center bg-gray-200" style="display: none;">
+            <div class="bg-white p-4 shadow rounded-lg w-8/12 h-8/12">
+                <h1 class="text-3xl font-bold mb-4">Cadastro de Eventos</h1>
+        
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="mb-4">
+                        <label for="titulo" class="block mb-2">Título:</label>
+                        <input type="text" name="titulo" id="titulo" required class="p-2 border border-gray-300 w-full rounded">
+                    </div>
+                    <div class="mb-4">
+                        <label for="categoria" class="block mb-2">Categoria:</label>
+                        <select name="categoria" id="categoria" class="p-2 border border-gray-300 w-full rounded">
+                            <option value="reminder">Lembrete</option>
+                            <option value="task">Tarefa</option>
+                            <option value="event">Evento</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="data_inicio" class="block mb-2">Data de Início:</label>
+                        <input type="date" name="data_inicio" id="data_inicio" required class="p-2 border border-gray-300  w-full rounded">
+                    </div>
+                    <div class="mb-4">
+                        <label for="data_fim" class="block mb-2">Data de Fim:</label>
+                        <input type="date" name="data_fim" id="data_fim" required class="p-2 border border-gray-300  w-full rounded">
+                    </div>
+                    <div class="mb-4">
+                        <label for="cor" class="block mb-2">Cor:</label>
+                        <input type="color" name="cor" id="cor" required class="border">
+                    </div>
+                    <div class="mb-4">
+                        <label for="localizacao" class="block mb-2">Localização:</label>
+                        <select name="localizacao" id="localizacao" class="p-2 border border-gray-300  w-full rounded">
+                            <option value="salaA">Sala A</option>
+                            <option value="salaB">Sala B</option>
+                            <option value="salaC">Sala C</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="descricao" class="block mb-2">Descrição:</label>
+                        <textarea name="descricao" id="descricao" rows="4" cols="50" required class="p-2 border border-gray-300 rounded"></textarea>
+                    </div>
+                    <div class="col-span-2">
+                        <a onclick="openCloseEvent()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700 cursor-pointer">Cancelar</a>
+                        <a onclick="newEvent()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 cursor-pointer">Salvar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
         <script src="../js/calendar.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>
     </body>
-    <style>
-        .calendar-header {
-        margin-bottom: 20px;
-        }
-        #calendar td {
-        height: 100px;
-        min-width: 100px;
-        border: 1px solid black;
-        text-align: center;
-        }
-        #calendar tr button {
-            margin: 0 auto;
-            display: block;
-        }
-    </style>
 </html>
