@@ -2,7 +2,7 @@ let currentYear, currentMonth;
 
 function createCalendar(year, month) {
   const calendar = document.getElementById('calendar');
-  const weekdays = ['SAB', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'];
+  const weekdays = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'];
   const monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
   const firstDay = new Date(year, month, 1);
@@ -10,7 +10,7 @@ function createCalendar(year, month) {
 
   let html = '<tr>';
   for (let i = 0; i < weekdays.length; i++) {
-    html += '<th class="bg-blue-500 text-white">' + weekdays[i] + '</th>';
+    html += '<th class="bg-blue-500 text-white border border-black">' + weekdays[i] + '</th>';
   }
   html += '</tr>';
 
@@ -28,9 +28,6 @@ function createCalendar(year, month) {
       }
     }
     html += '</tr>';
-    if (dayCounter > lastDay) {
-      break;
-    }
   }
 
   calendar.innerHTML = html;
@@ -38,6 +35,7 @@ function createCalendar(year, month) {
   const calendarTitle = document.getElementById('calendarTitle');
   calendarTitle.textContent = monthNames[month] + ' ' + year;
 }
+
 
 function nextMonth() {
   currentMonth++;
@@ -110,7 +108,10 @@ function getEventsOfMonth() {
           if (elementoPai) {
             const divEvento = document.createElement("div");
             divEvento.classList.add("rounded-lg", "event-view");
-      
+            divEvento.onclick = function () {
+              playMusic();
+            };
+
             if (data.ds_color) {
               divEvento.style.backgroundColor = data.ds_color;
             } else {
@@ -119,15 +120,10 @@ function getEventsOfMonth() {
 
             const tituloEvento = document.createElement("h3");
             tituloEvento.classList.add("text-lg", "font-semibold", "text-white");
-            tituloEvento.textContent = data.nm_title;
-      
-            const descricaoEvento = document.createElement("p");
-            descricaoEvento.classList.add("text-white");
-            descricaoEvento.textContent = data.ds_description;
+            tituloEvento.textContent = data.nm_title +" - "+ data.ds_description;
       
             divEvento.appendChild(tituloEvento);
-            divEvento.appendChild(descricaoEvento);
-      
+            
             elementoPai.appendChild(divEvento);
           } else {
             console.log("Elemento pai não encontrado para a data: ", dataFormatada);

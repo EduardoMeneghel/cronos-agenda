@@ -7,10 +7,10 @@
     <link href="../css/calendar.css" rel="stylesheet">
     </head>
     <body class="bg-gray-100">
-        <section class="container mx-auto p-4">
-            <div class="calendar-header flex justify-between items-center mb-4">
+        <section class="mx-auto w-full h-full">
+            <div class="calendar-header flex justify-between items-center calendar-bg">
                 <button id="prevMonth" class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">Mês Anterior</button>
-                <h2 id="calendarTitle" class="text-lg font-bold"></h2>
+                <h2 id="calendarTitle" class="text-5xl font-bold text-white"></h2>
                 <button id="nextMonth" class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">Proximo Mês</button>
             </div>
             <table id="calendar" class="table-fixed w-full">
@@ -65,6 +65,7 @@
             </div>
         </section>
         <script src="../js/calendar.js"></script>
+        <script src="../js/notification.js"></script>
         <script src="https://cdn.tailwindcss.com"></script>
     </body>
 </html>

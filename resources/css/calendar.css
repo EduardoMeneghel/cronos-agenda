@@ -1,8 +1,12 @@
+html, body {
+    overflow: hidden;
+}
+
 .calendar-header {
     margin-bottom: 20px;
 }
 #calendar td {
-    height: 100px;
+    height: 150px;
     min-width: 100px;
     border: 1px solid black;
     text-align: center;
@@ -10,4 +14,13 @@
 #calendar tr button {
     margin: 0 auto;
     display: block;
+}
+
+.calendar-bg{
+    margin-bottom: 0px;
+    padding: 65px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 88%;
+    background-image: url(../../assets/image/ETS2.jpeg);
 }
