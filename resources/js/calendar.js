@@ -107,7 +107,7 @@ function getEventsOfMonth() {
       
           if (elementoPai) {
             const divEvento = document.createElement("div");
-            divEvento.classList.add("rounded-lg", "event-view");
+            divEvento.classList.add("m-1","event-view");
             divEvento.onclick = function () {
               playMusic();
             };
