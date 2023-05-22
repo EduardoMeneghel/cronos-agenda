@@ -57,6 +57,33 @@
                         <label for="descricao" class="block mb-2">Descrição:</label>
                         <textarea name="descricao" id="descricao" rows="4" cols="50" required class="p-2 border border-gray-300 rounded"></textarea>
                     </div>
+                    <div class="mb-4">
+                        <label for="descricao" class="block mb-2">Recorrência</label>
+                        <div class="d-inline-block">
+                            <input checked id="recurrence" onclick="openRecurrenceDays()" type="radio" value="" name="recurrence" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="recurrence-1" class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Todos os dias selecionados</label>
+                        </div>
+                        <div class="d-inline-block">
+                            <input id="recurrence-radio-days" onclick="openRecurrenceDays()" type="radio" value="" name="recurrence" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="recurrence-2" class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Dias da semana selecionados</label>
+                        </div>
+                        <div class="flex items-center" id="recurrence-days" style="display: none;">
+                            <input id="sunday" type="checkbox" value="" name="day" class="text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Domingo</label>
+                            <input id="monday" type="checkbox" value="" name="day" class="ml-2 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Segunda</label>
+                            <input id="tuesday" type="checkbox" value="" name="day" class="ml-2 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Terça</label>
+                            <input id="wednesday" type="checkbox" value="" name="day" class="ml-2 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Quarta</label>
+                            <input id="thursday" type="checkbox" value="" name="day" class="ml-2 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Quinta</label>
+                            <input id="friday" type="checkbox" value="" name="day" class="ml-2 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Sexta</label>
+                            <input id="saturday" type="checkbox" value="" name="day" class="ml-2 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Sabado</label>
+                        </div>
+                    </div>
                     <div class="col-span-2">
                         <a onclick="openCloseEvent()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700 cursor-pointer">Cancelar</a>
                         <a onclick="newEvent()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 cursor-pointer">Salvar</a>

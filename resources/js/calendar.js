@@ -148,6 +148,16 @@ function openCloseEvent() {
   }
 }
 
+function openRecurrenceDays() {
+  var recurrenceDays = document.getElementById("recurrence-days");
+  const recurrenceRadio = document.getElementById("recurrence-radio-days");
+  if (recurrenceRadio.checked) {
+    recurrenceDays.style.display = "";
+  } else {
+    recurrenceDays.style.display = "none";
+  }
+}
+
 function clearEvents() {
   const elementosEventView = document.querySelectorAll(".event-view");
 
@@ -155,6 +165,16 @@ function clearEvents() {
     elemento.remove();
   });
 }
+
+//var recurrence = document.getElementById("recurrence").checked;
+//var recurrenceRadioDays = document.getElementById("recurrence-radio-days").checked;
+//var sunday = document.getElementById("sunday").checked;
+//var monday = document.getElementById("monday").checked;
+//var tuesday = document.getElementById("tuesday").checked;
+//var wednesday = document.getElementById("wednesday").checked;
+//var thursday = document.getElementById("thursday").checked;
+//var friday = document.getElementById("friday").checked;
+//var saturday = document.getElementById("saturday").checked;
 
 function newEvent() {
   var titulo = document.getElementById("titulo").value;
@@ -165,23 +185,32 @@ function newEvent() {
   var localizacao = document.getElementById("localizacao").value;
   var descricao = document.getElementById("descricao").value;
 
-  var eventData = {
-    titulo: titulo,
-    categoria: categoria,
-    data_inicio: data_inicio,
-    data_fim: data_fim,
-    cor: cor,
-    localizacao: localizacao,
-    descricao: descricao
-  };
+  // Convertendo as datas para objetos Date
+  var startDate = new Date(data_inicio);
+  var endDate = new Date(data_fim);
 
-  fetch("http://localhost:3000/events", {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(eventData)
-  })
+  // Criando uma cópia da data de início
+  var currentDate = new Date(startDate);
+
+  // Enquanto a data atual for menor ou igual à data de fim
+  while (currentDate <= endDate) {
+    var eventData = {
+      titulo: titulo,
+      categoria: categoria,
+      data_inicio: currentDate.toISOString(),
+      data_fim: currentDate.toISOString(),
+      cor: cor,
+      localizacao: localizacao,
+      descricao: descricao
+    };
+
+    fetch("http://localhost:3000/events", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(eventData)
+    })
     .then(function (response) {
       clearEvents();
       getEventsOfMonth();
@@ -195,4 +224,8 @@ function newEvent() {
     .catch(function (error) {
       console.error(error);
     });
+
+    // Incrementando a data atual para o próximo dia
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
 }
