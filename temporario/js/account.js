@@ -7,7 +7,7 @@ function login() {
     return;
   }
 
-  fetch('http://localhost:3000/login', {
+  fetch('http://localhost:3002/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ function register() {
     return;
   }
 
-  fetch('http://localhost:3000/register', {
+  fetch('http://localhost:3002/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

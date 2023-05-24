@@ -75,7 +75,7 @@ function getEventsOfMonth() {
   const startOfMonth = currentYear + '-' + (currentMonth + 1).toString().padStart(2, '0') + '-01';
   const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const endOfMonth = currentYear + '-' + (currentMonth + 1).toString().padStart(2, '0') + '-' + lastDayOfMonth.toString().padStart(2, '0');
-  fetch('http://localhost:3000/events/monthly', {
+  fetch('http://localhost:3002/events/monthly', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -204,7 +204,7 @@ function newEvent() {
       descricao: descricao
     };
 
-    fetch("http://localhost:3000/events", {
+    fetch("http://localhost:3002/events", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

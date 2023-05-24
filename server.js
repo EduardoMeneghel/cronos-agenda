@@ -58,7 +58,7 @@ app.post('/register', (request, response) => {
   }
 });
 
-const PORT = 3000;
+const PORT = 3002;
 app.listen(PORT, () => {
   console.log(`server started`);
 });
