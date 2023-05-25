@@ -29,11 +29,13 @@ app.post('/login', (request, response) => {
   const {loginEmail, loginPassword } = request.body;
 
   connection.query(`SELECT * FROM users WHERE ds_email = '${loginEmail}'`, (err, rows, fields) => {
-    if (! rows || loginPassword != rows[0].password) {
+    if (! rows || loginPassword != rows[0].ds_password) {
       return response.status(400).send('Conta ou senha inválida');
     }
 
-    response.status(200).send("Efetuado co sucesso");
+    if (rows[0].ds_password == loginPassword && rows[0].ds_email == loginEmail) {
+      response.status(200).send("Efetuado co sucesso");
+    }
 
   });
 });

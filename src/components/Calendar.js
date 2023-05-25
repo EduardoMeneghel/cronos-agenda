@@ -1,9 +1,11 @@
 import React from 'react';
+import Navbar from './Navbar';
+import '../styles/Calendar.css';
 
 function Calendar() {
   return (
-    <div>
-      Eduardo Pedro Meneghel
+    <div className="mx-auto w-full h-full">
+      {<Navbar />}
     </div>
   );
 }
