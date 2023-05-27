@@ -4,12 +4,12 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
-import Calendar from './components/Calendar';
+import Main from './components/Main';
 
 ReactDOM.render(
   <Router>
     <Routes>
-      <Route path="/" element={<Calendar />} />
+      <Route path="/" element={<Main />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
     </Routes>
