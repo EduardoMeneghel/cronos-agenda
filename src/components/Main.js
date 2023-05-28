@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import MonthSwitcher from './MonthSwitcher';
 import Calendar from './Calendar';
+import NewEventModal from './NewEventModal';
 import '../styles/Calendar.css';
 
 const Main = () => {
@@ -18,6 +19,7 @@ const Main = () => {
 
   return (
     <div className="mx-auto w-full h-screen">
+      <NewEventModal/>
       <MonthSwitcher now={now} onPrevMonth={handlePrevMonth} onNextMonth={handleNextMonth}/>
       <Calendar daysOfTheWeek={daysOfTheWeek} now={now}/>
     </div>
