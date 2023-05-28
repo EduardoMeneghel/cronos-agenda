@@ -28,7 +28,6 @@ const Calendar = (props) => {
                 </table>
             </div>
             <div>
-                Data
             </div>
             <div className="absolute bottom-0 w-full">
                 <div className="text-center" >
@@ -63,8 +62,6 @@ const Calendar = (props) => {
             </div>
         </div>
   </div>
-  
-  
   );
 }
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import useKeyPressEvent from 'react-use-keypress';
 
 const NewEventModal = () => {
-  const [showAddEvent, setShowAddEvent] = useState(true);
+  const [showAddEvent, setShowAddEvent] = useState(false);
   const recurrenceDaysRef = useRef(null);
 
   const toggleAddEvent = () => {
