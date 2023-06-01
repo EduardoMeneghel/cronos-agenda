@@ -38,7 +38,7 @@ const Calendar = (props) => {
                     <p className="bg-blue-200 py-3">Sair</p>
                 </div>
                 <div className="bg-white flex justify-between p-4">
-                    <img src={user} className="w-8 inline-block" />
+                    <img src={user} className="w-8 inline-block rounded-full" />
                     <p className="inline-block font-bold">CRONOS AGENDA</p>
                     <img src={settings} className="w-8 inline-block" />
                 </div>
