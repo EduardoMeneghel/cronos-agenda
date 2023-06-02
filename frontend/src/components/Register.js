@@ -2,14 +2,42 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
-    const [nome, setNome] = useState('');
-    const [sobrenome, setSobrenome] = useState('');
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
     const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [confirmarSenha, setConfirmarSenha] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleRegister = () => {
-    // Lógica de registro aqui
+    if (password !== confirmPassword) {
+      alert('A senha e a confirmação de senha não correspondem');
+      return;
+    }
+  
+    fetch('http://localhost:3002/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          'name': name,
+          'surname': surname,
+          'email': email,
+          'password': password,
+          'confirmPassword': confirmPassword
+      })
+    })
+    .then(response => {
+      if (response.ok) {
+        alert('Registro concluído com sucesso');
+      } else {
+        alert('Ocorreu um erro no registro');
+      }
+    })
+    .catch(error => {
+      alert('Ocorreu um erro de rede');
+      console.error(error);
+    });
   };
 
   return (
@@ -18,25 +46,22 @@ const Register = () => {
         <div>
           <input
             type="text"
-            id="nome"
             className="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 mt-5"
             placeholder="Nome"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
           />
           <input
             type="text"
-            id="sobrenome"
             className="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 mt-5"
             placeholder="Sobrenome"
-            value={sobrenome}
-            onChange={(e) => setSobrenome(e.target.value)}
+            value={surname}
+            onChange={(e) => setSurname(e.target.value)}
             required
           />
           <input
             type="email"
-            id="email"
             className="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 mt-5"
             placeholder="E-mail"
             value={email}
@@ -45,20 +70,18 @@ const Register = () => {
           />
           <input
             type="password"
-            id="senha"
             className="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 mt-5"
             placeholder="Senha"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
           <input
             type="password"
-            id="confirmarSenha"
             className="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 mt-5"
             placeholder="Confirma senha"
-            value={confirmarSenha}
-            onChange={(e) => setConfirmarSenha(e.target.value)}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
           <Link
