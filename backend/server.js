@@ -49,7 +49,7 @@ app.post('/register', (request, response) => {
       return response.status(400).send('A senha e a confirmação de senha não correspondem');
     }
 
-    connection.query(`INSERT INTO users (first_name, last_name, email, password) VALUES('${name}', '${surname}', '${email}', '${password}');`, (err, rows, fields) => {
+    connection.query(`INSERT INTO users (nm_first, nm_last, ds_email, ds_password) VALUES('${name}', '${surname}', '${email}', '${password}');`, (err, rows, fields) => {
 
     });
 
