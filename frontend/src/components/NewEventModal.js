@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import useKeyPressEvent from 'react-use-keypress';
+import DateRangePicker from './DateRangePicker ';
 
 const NewEventModal = () => {
   const [showAddEvent, setShowAddEvent] = useState(false);
@@ -51,6 +52,9 @@ const NewEventModal = () => {
           <div className="mb-4">
             <label htmlFor="data_fim" className="block mb-2">Data de Fim:</label>
             <input type="date" name="data_fim" id="data_fim" required className="p-2 border border-gray-300 w-full rounded" />
+          </div>
+          <div className="mb-4">
+            <DateRangePicker/>
           </div>
           <div className="mb-4">
             <label htmlFor="cor" className="block mb-2">Cor:</label>
