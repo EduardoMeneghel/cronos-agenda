@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import user from '../images/user.png';
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -44,6 +45,7 @@ const Register = () => {
     <div className='max-w-lg mx-auto mt-32'>
       <div className="mx-auto max-w-sm p-6 bg-white rounded-lg shadow">
         <div>
+          <img src={user} className="rounded-full w-48 h-48 mx-auto" />
           <input
             type="text"
             className="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 mt-5"
