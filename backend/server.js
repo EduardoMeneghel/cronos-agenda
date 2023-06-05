@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const database = require('./database');
+const bcrypt = require('bcryptjs');
 
 const app = express();
 app.use(express.json());
@@ -29,12 +30,15 @@ app.post('/login', (request, response) => {
   const {loginEmail, loginPassword } = request.body;
 
   connection.query(`SELECT * FROM users WHERE ds_email = '${loginEmail}'`, (err, rows, fields) => {
-    if (! rows || loginPassword != rows[0].ds_password) {
+    if (! rows || ! loginEmail || ! loginPassword) {
       return response.status(400).send('Conta ou senha inválida');
     }
 
-    if (rows[0].ds_password == loginPassword && rows[0].ds_email == loginEmail) {
+    const thePasswordIsValid = bcrypt.compareSync(loginPassword, rows[0].ds_password);
+    if (thePasswordIsValid && rows[0].ds_email == loginEmail) {
       response.status(200).send("Efetuado co sucesso");
+    } else {
+      return response.status(400).send('Conta ou senha inválida');
     }
 
   });
@@ -49,7 +53,9 @@ app.post('/register', (request, response) => {
       return response.status(400).send('A senha e a confirmação de senha não correspondem');
     }
 
-    connection.query(`INSERT INTO users (nm_first, nm_last, ds_email, ds_password) VALUES('${name}', '${surname}', '${email}', '${password}');`, (err, rows, fields) => {
+    const hash = bcrypt.hashSync(password, 10);
+
+    connection.query(`INSERT INTO users (nm_first, nm_last, ds_email, ds_password) VALUES('${name}', '${surname}', '${email}', '${hash}');`, (err, rows, fields) => {
 
     });
 
