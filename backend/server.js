@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const database = require('./database');
+var jwt = require('./jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 const app = express();
@@ -36,11 +37,16 @@ app.post('/login', (request, response) => {
 
     const thePasswordIsValid = bcrypt.compareSync(loginPassword, rows[0].ds_password);
     if (thePasswordIsValid && rows[0].ds_email == loginEmail) {
-      response.status(200).send("Efetuado co sucesso");
+
+      const payload = { id: rows[0].id, email: rows[0].ds_email};
+      const secretKey = 'secretKey';
+      const token = jwt.sign(payload, secretKey);
+      const decoded = jwt.decode(token);
+
+      response.status(200).json(decoded);
     } else {
       return response.status(400).send('Conta ou senha inválida');
     }
-
   });
 });
 
