@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RenderCalendar } from '../utils/Utils';
-import AccountConfigurations from './AccountConfigurations';
+import Configurations from './Configurations';
 import user from '../images/user.png';
 import settings from '../images/settings.png';
 
@@ -9,10 +9,10 @@ const Calendar = (props) => {
   const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1);
   const nextMonthName = nextMonth.toLocaleString('pt-BR', { month: 'long', year: 'numeric' }).toUpperCase();
 
-  const [showAccountConfigurations, setShowAccountConfigurations] = useState(false);
+  const [showConfigurations, setshowConfigurations] = useState(false);
 
-  const toggleAccountConfigurations = () => {
-    setShowAccountConfigurations(!showAccountConfigurations);
+  const toggleConfigurations = () => {
+    setshowConfigurations(!showConfigurations);
   };
   
   return (
@@ -35,7 +35,7 @@ const Calendar = (props) => {
         </div>
         <div></div>
         <div className="absolute bottom-0 w-full">
-          {showAccountConfigurations && <AccountConfigurations />}
+          {showConfigurations && <Configurations />}
           <div className="bg-white flex justify-between p-4">
             <img src={user} className="w-8 inline-block rounded-full" alt="User" />
             <p className="inline-block font-bold">CRONOS AGENDA</p>
@@ -43,7 +43,7 @@ const Calendar = (props) => {
               src={settings}
               className="w-8 inline-block"
               alt="Settings"
-              onClick={toggleAccountConfigurations}
+              onClick={toggleConfigurations}
             />
           </div>
         </div>
