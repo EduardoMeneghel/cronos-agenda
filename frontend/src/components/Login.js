@@ -22,17 +22,17 @@ const Login = () => {
         loginPassword: password
       })
     })
-      .then(response => {
+    .then(response => {
         if (response.ok) {
           alert('Login concluído com sucesso');
         } else {
-          alert('Ocorreu um erro no Login');
-        }
-      })
-      .catch(error => {
-        alert('Ocorreu um erro de rede');
-        console.error(error);
-      });
+        alert('Ocorreu um erro no Login');
+      }
+    })
+    .catch(error => {
+      alert('Ocorreu um erro de rede');
+      console.error(error);
+    });
   };
 
   return (

@@ -1,8 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const database = require('./database');
-var jwt = require('./jsonwebtoken');
-const bcrypt = require('bcryptjs');
+const { generateHash, compareDataToHash } = require('./bcrypt.js');
 
 const app = express();
 app.use(express.json());
@@ -27,23 +26,16 @@ app.post('/events', (request, response) => {
 });
 
 app.post('/login', (request, response) => {
-
-  const {loginEmail, loginPassword } = request.body;
+  const { loginEmail, loginPassword } = request.body;
 
   connection.query(`SELECT * FROM users WHERE ds_email = '${loginEmail}'`, (err, rows, fields) => {
-    if (! rows || ! loginEmail || ! loginPassword) {
+    if (!rows || !loginEmail || !loginPassword) {
       return response.status(400).send('Conta ou senha inválida');
     }
 
-    const thePasswordIsValid = bcrypt.compareSync(loginPassword, rows[0].ds_password);
-    if (thePasswordIsValid && rows[0].ds_email == loginEmail) {
-
-      const payload = { id: rows[0].id, email: rows[0].ds_email};
-      const secretKey = 'secretKey';
-      const token = jwt.sign(payload, secretKey);
-      const decoded = jwt.decode(token);
-
-      response.status(200).json(decoded);
+    const isAValidPassword = compareDataToHash(loginPassword, rows[0].ds_password);
+    if (isAValidPassword && rows[0].ds_email == loginEmail) {
+      return response.status(200).send('Login concluído com sucesso');
     } else {
       return response.status(400).send('Conta ou senha inválida');
     }
@@ -59,7 +51,7 @@ app.post('/register', (request, response) => {
       return response.status(400).send('A senha e a confirmação de senha não correspondem');
     }
 
-    const hash = bcrypt.hashSync(password, 10);
+    const hash = generateHash(password);
 
     connection.query(`INSERT INTO users (nm_first, nm_last, ds_email, ds_password) VALUES('${name}', '${surname}', '${email}', '${hash}');`, (err, rows, fields) => {
 
